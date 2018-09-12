@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">gbt</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">홈</string>
+    <string name="title_search">검색</string>
+    <string name="title_register">등록</string>
+    <string name="title_notifications">알림</string>
+    <string name="title_setting">설정</string>
 </resources>
