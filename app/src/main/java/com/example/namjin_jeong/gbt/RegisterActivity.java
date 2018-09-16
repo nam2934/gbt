@@ -1,42 +1,40 @@
 package com.example.namjin_jeong.gbt;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
+
     private TextView mTextMessage;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    Intent intent0 = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent0);
                     return true;
                 case R.id.navigation_search:
-                    Intent intent1 = new Intent(MainActivity.this, SearchActivity.class);
+                    Intent intent1 = new Intent(RegisterActivity.this, SearchActivity.class);
                     startActivity(intent1);
                     return true;
                 case R.id.navigation_register:
-                    Intent intent2 = new Intent(MainActivity.this, RegisterActivity.class);
-                    startActivity(intent2);
+                    mTextMessage.setText(R.string.title_register);
                     return true;
                 case R.id.navigation_notifications:
-                    Intent intent3 = new Intent(MainActivity.this, NotificationActivity.class);
+                    Intent intent3 = new Intent(RegisterActivity.this, NotificationActivity.class);
                     startActivity(intent3);
                     return true;
                 case R.id.navigation_setting:
-                    Intent intent4 = new Intent(MainActivity.this, SettingActivity.class);
+                    Intent intent4 = new Intent(RegisterActivity.this, SettingActivity.class);
                     startActivity(intent4);
                     return true;
             }
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         mTextMessage = (TextView) findViewById(R.id.message);
 
@@ -56,10 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationViewHelper.removeShiftMode(navigation);
         Menu menu = navigation.getMenu();
-        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
     }
-
-
 
 }
