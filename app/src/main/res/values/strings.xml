@@ -5,4 +5,9 @@
     <string name="title_register">등록</string>
     <string name="title_notifications">알림</string>
     <string name="title_setting">설정</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
 </resources>
