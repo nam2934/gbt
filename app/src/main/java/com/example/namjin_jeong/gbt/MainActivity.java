@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    //@RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
 
-        BottomNavigationViewEx bnve = (BottomNavigationViewEx) findViewById(R.id.bnve);
-        bnve.enableShiftingMode(false);
-/*        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        */
+
+        BottomNavigationViewHelper.removeShiftMode(navigation);
+
     }
 
 }
