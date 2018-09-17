@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
                     return true;
                 case R.id.navigation_search:
                     Intent intent1 = new Intent(MainActivity.this, SearchActivity.class);
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent4 = new Intent(MainActivity.this, SettingActivity.class);
                     startActivity(intent4);
                     overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
-
                     return true;
             }
             return false;
@@ -92,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
     private long time= 0;
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
-        finish();
-        android.os.Process.killProcess(android.os.Process.myPid());
+        ActivityCompat.finishAffinity(this);
+        System.runFinalizersOnExit(true);
+        System.exit(0);
     }
 
 
