@@ -5,25 +5,35 @@ import android.content.Intent;
 import android.content.Context;
 import android.graphics.Rect;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
+    private ImageButton addPostButton;
+    private LinearLayout postLinearLayout;
+    private EditText nameEditText;
+    private PostTextView textView1;
+    private PostTextView textView2;
+    private LinearLayout addpostLinearLayout;
+    private ScrollView postScrollView;
+
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -63,7 +73,47 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        mTextMessage = (TextView) this.findViewById(R.id.message);
+        addPostButton = (ImageButton) this.findViewById(R.id.addpostbutton);
+
+        nameEditText = new EditText(this);
+        nameEditText.setGravity(Gravity.CENTER);
+        nameEditText.setText("제목");
+
+
+
+        addpostLinearLayout = new LinearLayout(this);
+        addpostLinearLayout.addView(nameEditText);
+
+
+
+
+
+        textView1 = new PostTextView(this);
+        textView1.setText("#FUCK\nHELLO");
+
+        textView2 = new PostTextView(this);
+        textView2.setText("#FUCK123\nHELLO222");
+
+        postLinearLayout = new LinearLayout(this);
+        postLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        postLinearLayout.setOrientation(LinearLayout.VERTICAL);
+        postLinearLayout.addView(textView1);
+        postLinearLayout.addView(textView2);
+
+
+        postScrollView = (ScrollView) this.findViewById(R.id.postscrollview);
+        postScrollView.addView(postLinearLayout);
+
+        addPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(postLinearLayout.getParent() != null ) {
+                    postScrollView.removeView(postLinearLayout);
+                    postScrollView.addView(addpostLinearLayout);
+                }
+            }
+        });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
