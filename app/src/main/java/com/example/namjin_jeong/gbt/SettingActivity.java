@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -21,18 +22,22 @@ public class SettingActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent intent0 = new Intent(SettingActivity.this, MainActivity.class);
                     startActivity(intent0);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_search:
                     Intent intent1 = new Intent(SettingActivity.this, SearchActivity.class);
                     startActivity(intent1);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_register:
                     Intent intent2 = new Intent(SettingActivity.this, RegisterActivity.class);
                     startActivity(intent2);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_notifications:
                     Intent intent3 = new Intent(SettingActivity.this, NotificationActivity.class);
                     startActivity(intent3);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_setting:
                     return true;
@@ -55,6 +60,14 @@ public class SettingActivity extends AppCompatActivity {
         Menu menu = navigation.getMenu();
         MenuItem menuItem = menu.getItem(4);
         menuItem.setChecked(true);
+    }
+
+    private long time= 0;
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
 }

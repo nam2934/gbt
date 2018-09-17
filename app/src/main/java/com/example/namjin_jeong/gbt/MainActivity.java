@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
@@ -32,21 +33,24 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_search:
-
                     Intent intent1 = new Intent(MainActivity.this, SearchActivity.class);
                     startActivity(intent1);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_register:
                     Intent intent2 = new Intent(MainActivity.this, RegisterActivity.class);
                     startActivity(intent2);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_notifications:
                     Intent intent3 = new Intent(MainActivity.this, NotificationActivity.class);
                     startActivity(intent3);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_setting:
                     Intent intent4 = new Intent(MainActivity.this, SettingActivity.class);
                     startActivity(intent4);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
 
                     return true;
             }
@@ -84,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent( event );
+    }
+    private long time= 0;
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
 

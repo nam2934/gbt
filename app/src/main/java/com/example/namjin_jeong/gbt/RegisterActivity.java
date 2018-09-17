@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -21,10 +22,12 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent intent0 = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent0);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_search:
                     Intent intent1 = new Intent(RegisterActivity.this, SearchActivity.class);
                     startActivity(intent1);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_register:
                     mTextMessage.setText(R.string.title_register);
@@ -32,10 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     Intent intent3 = new Intent(RegisterActivity.this, NotificationActivity.class);
                     startActivity(intent3);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
                 case R.id.navigation_setting:
                     Intent intent4 = new Intent(RegisterActivity.this, SettingActivity.class);
                     startActivity(intent4);
+                    overridePendingTransition(R.anim.not_move_activity,R.anim.not_move_activity);
                     return true;
             }
             return false;
@@ -56,6 +61,14 @@ public class RegisterActivity extends AppCompatActivity {
         Menu menu = navigation.getMenu();
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
+    }
+
+    private long time= 0;
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
 }
